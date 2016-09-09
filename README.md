@@ -1,5 +1,5 @@
-# USB Bootloader for LPC2148
+# PushTracker
 
-This is a modified version of Sparkfun's bootloader which has been
-customized for the PushTracker to enable displaying of splash screens
-when plugged into the USB.
+This device is designed to detect pushes on a manual wheelchair by
+using an accelerometer.  It provides user interaction and feedback
+through a rotary+push switch and a 128x128 pixel color OLED.
