@@ -1,21 +1,8 @@
-/******************************************************************************
- *
- * $RCSfile$
- * $Revision: 124 $
- *
- * This module provides the interface definitions for setting up and
- * controlling the various interrupt modes present on the ARM processor.
- * Copyright 2004, R O SoftWare
- * No guarantees, warrantees, or promises, implied or otherwise.
- * May be used for hobby or commercial purposes provided copyright
- * notice remains intact.
- *
- *****************************************************************************/
 #ifndef OLED_H
 #define OLED_H
 
-//#define SSD1339
-#define SSD1351		// for newer screens with 1351 gdd
+#define SSD1339
+//#define SSD1351		// for newer screens with 1351 gdd
 
 
 
