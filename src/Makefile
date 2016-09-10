@@ -6,7 +6,8 @@ FLASH_TOOL = LPC12
 #FLASH_TOOL = OPENOCD
 
 # MCU name and submodel
-MCU      = arm7tdmi-s
+MCU      = armv7-a
+TUNE     = arm7tdmi
 SUBMDL   = LPC2148
 #THUMB    = -mthumb
 
@@ -132,9 +133,6 @@ CDEFS += -D$(VECTOR_LOCATION)
 ADEFS += -D$(VECTOR_LOCATION)
 endif
 
-CDEFS += -D__WinARM__
-ADEFS += -D__WinARM__
-
 # Compiler flags.
 #  -g*:          generate debugging information
 #  -O*:          optimization level
@@ -239,12 +237,12 @@ LPC21ISP_CONTROL = -control
 
 # Define programs and commands.
 SHELL = sh
-CC = arm-elf-gcc
-CPP = arm-elf-g++
-OBJCOPY = arm-elf-objcopy
-OBJDUMP = arm-elf-objdump
-SIZE = arm-elf-size
-NM = arm-elf-nm
+CC = arm-none-eabi-gcc
+CPP = arm-none-eabi-g++
+OBJCOPY = arm-none-eabi-objcopy
+OBJDUMP = arm-none-eabi-objdump
+SIZE = arm-none-eabi-size
+NM = arm-none-eabi-nm
 REMOVE = rm -f
 COPY = cp
 
@@ -287,8 +285,8 @@ GENDEPFLAGS = -MD -MP -MF .dep/$(@F).d
 
 # Combine all necessary flags and optional flags.
 # Add target processor to flags.
-ALL_CFLAGS  = -mcpu=$(MCU) $(THUMB_IW) -I. $(CFLAGS) $(GENDEPFLAGS)
-ALL_ASFLAGS = -mcpu=$(MCU) $(THUMB_IW) -I. -x assembler-with-cpp $(ASFLAGS)
+ALL_CFLAGS  = -march=$(MCU) -mtune=$(TUNE) $(THUMB_IW) -I. $(CFLAGS) $(GENDEPFLAGS)
+ALL_ASFLAGS = -march=$(MCU) -mtune=$(TUNE) $(THUMB_IW) -I. -x assembler-with-cpp $(ASFLAGS)
 
 
 # Default target.
@@ -374,7 +372,7 @@ endif
 	@echo
 	@echo $(MSG_FLASH) $@
 	$(OBJCOPY) -O ihex $< $@
-	
+
 # Create final output file (.bin) from ELF output file.
 %.bin: %.elf
 	@echo
