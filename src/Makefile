@@ -7,7 +7,7 @@ FLASH_TOOL = LPC12
 
 # MCU name and submodel
 MCU      = armv7-a
-TUNE     = arm7tdmi
+TUNE     = arm7tdmi-s
 SUBMDL   = LPC2148
 #THUMB    = -mthumb
 

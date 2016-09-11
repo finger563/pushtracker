@@ -18,8 +18,8 @@
 //================================
 //			I/O Defines
 //================================
-//#define USE_SLOW_GPIO
-#define USE_FAST_GPIO
+#define USE_SLOW_GPIO
+//#define USE_FAST_GPIO
 
 
 #define CHIP_SELECT	(1<<20)
@@ -51,7 +51,10 @@
 #define SWITCH_ENTER	11
 #define SWITCH_DOWN		12
 
-#define ODOMETER_PIN	25		// D+ is on P0.26, and is used for odometer, when it goes low, the switch is actuated by a magnet
+#define ODOMETER_PIN	25		// D+ is on P0.26, and is used
+					// for odometer, when it goes
+					// low, the switch is actuated
+					// by a magnet
 
 //================================
 //		PushTracker Defines
