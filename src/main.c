@@ -102,13 +102,7 @@ int main (void)
 {
   boot_up(); //Init LPC, IO pins
         
-  flash_it(500);
-
-  flash_it(500);
-
-  flash_it(500);
-
-  flash_it(500);
+  //flash_it(500);
 
   int   i = 0;
         
@@ -120,7 +114,7 @@ int main (void)
   //delay_ms(1500);
         
   ClearScreen();
-  //Circle(50, 50,10,0xFF);
+  //circle(50, 50,10,0xFF, 0xFF);
   //BufferToScreen(0,0,OLED_END,OLED_END);
   //delay_ms(1000);
         
@@ -285,7 +279,7 @@ void boot_up(void)
   //VICVectAddr    = 0x00000000;         //clear any pending/active interrupts
   initTimer0(timer0ISR);
         
-  rprintf_devopen(putc_serial0);                                                                //Open up serial port 0 for debugging
+  rprintf_devopen(putc_serial0);         //Open up serial port 0 for debugging
   rprintf("\n\n\n\tPushTracker v2.2\n");
   rprintf("\tMax Mobility LLC.\n");
   rprintf("\tWilliam Emfinger\n\n\n");

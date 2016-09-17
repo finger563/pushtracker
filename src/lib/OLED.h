@@ -126,12 +126,12 @@ void write_d(unsigned char out_data);
 void write_color(unsigned short out_color);
 //unsigned char read_d(void);
 
-void Draw_8x12_char(unsigned char* _char_matrix,int x_start,int y_start,unsigned char clr);
-void Write_8x12_char(unsigned char* _char_matrix,int x_start,int y_start,unsigned char clr);
-void Draw_8x12_string(unsigned char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
-void Write_8x12_string(unsigned char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
-void Draw_5x8_char(unsigned char* _char_matrix,int x_start,int y_start,unsigned char clr);
-void Draw_5x8_string(unsigned char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
+void Draw_8x12_char(char* _char_matrix,int x_start,int y_start,unsigned char clr);
+void Write_8x12_char(char* _char_matrix,int x_start,int y_start,unsigned char clr);
+void Draw_8x12_string(char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
+void Write_8x12_string(char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
+void Draw_5x8_char(char* _char_matrix,int x_start,int y_start,unsigned char clr);
+void Draw_5x8_string(char* str,unsigned char len,int x_start,int y_start,unsigned char clr);
 
 void DrawRectangle(unsigned char xLeft, unsigned char yTop, unsigned char xRight, unsigned char yBottom, unsigned char clrOutline, unsigned char clrFill);
 //void ScreenToBuffer(unsigned char x_start,unsigned char y_start,unsigned char x_end, unsigned char y_end);

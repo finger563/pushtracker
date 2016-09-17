@@ -6,10 +6,8 @@ FLASH_TOOL = LPC12
 #FLASH_TOOL = OPENOCD
 
 # MCU name and submodel
-MCU      = armv7-a
-TUNE     = arm7tdmi-s
+MCU      = arm7tdmi-s
 SUBMDL   = LPC2148
-FLOAT    = -mfloat-abi=soft
 #THUMB    = -mthumb
 
 #This is needed to run IAP function call stuff
@@ -134,6 +132,9 @@ CDEFS += -D$(VECTOR_LOCATION)
 ADEFS += -D$(VECTOR_LOCATION)
 endif
 
+CDEFS += -D__WinARM__
+ADEFS += -D__WinARM__
+
 # Compiler flags.
 #  -g*:          generate debugging information
 #  -O*:          optimization level
@@ -219,7 +220,7 @@ LDFLAGS += -Tmain_memory_block.ld
 # Settings and variables:
 #LPC21ISP = lpc21isp
 LPC21ISP = lpc21isp
-LPC21ISP_PORT = com1
+LPC21ISP_PORT = /dev/ttyUSB0
 LPC21ISP_BAUD = 38400
 LPC21ISP_XTAL = 12000
 LPC21ISP_FLASHFILE = $(TARGET).hex
@@ -237,13 +238,14 @@ LPC21ISP_CONTROL = -control
 ## DIRAVRUTILS = $(DIRAVR)/utils/bin/
 
 # Define programs and commands.
+TARGET_PREFIX=arm-none-eabi-
 SHELL = sh
-CC = arm-none-eabi-gcc
-CPP = arm-none-eabi-g++
-OBJCOPY = arm-none-eabi-objcopy
-OBJDUMP = arm-none-eabi-objdump
-SIZE = arm-none-eabi-size
-NM = arm-none-eabi-nm
+CC = $(TARGET_PREFIX)gcc
+CPP = $(TARGET_PREFIX)g++
+OBJCOPY = $(TARGET_PREFIX)objcopy
+OBJDUMP = $(TARGET_PREFIX)objdump
+SIZE = $(TARGET_PREFIX)size
+NM = $(TARGET_PREFIX)nm
 REMOVE = rm -f
 COPY = cp
 
@@ -286,8 +288,8 @@ GENDEPFLAGS = -MD -MP -MF .dep/$(@F).d
 
 # Combine all necessary flags and optional flags.
 # Add target processor to flags.
-ALL_CFLAGS  = -march=$(MCU) -mtune=$(TUNE) $(FLOAT) $(THUMB_IW) -I. $(CFLAGS) $(GENDEPFLAGS)
-ALL_ASFLAGS = -march=$(MCU) -mtune=$(TUNE) $(FLOAT) $(THUMB_IW) -I. -x assembler-with-cpp $(ASFLAGS)
+ALL_CFLAGS  = -mcpu=$(MCU) $(THUMB_IW) -I. $(CFLAGS) $(GENDEPFLAGS)
+ALL_ASFLAGS = -mcpu=$(MCU) $(THUMB_IW) -I. -x assembler-with-cpp $(ASFLAGS)
 
 
 # Default target.
@@ -296,7 +298,7 @@ all: begin gccversion sizebefore build sizeafter finished end
 #ifeq ($(FORMAT),ihex)
 #build: elf hex lss sym
 #hex: $(TARGET).hex
-#IMGEXT=hex
+IMGEXT=hex
 #else 
 #ifeq ($(FORMAT),binary)
 build: elf bin lss sym hex FW.SFE
@@ -363,7 +365,7 @@ else
 program: $(TARGET).$(IMGEXT)
 	@echo
 	@echo $(MSG_LPC21_RESETREMINDER)
-	$(LPC21ISP) $(LPC21ISP_OPTIONS) $(LPC21ISP_DEBUG) $(LPC21ISP_FLASHFILE) $(LPC21ISP_PORT) $(LPC21ISP_BAUD) $(LPC21ISP_XTAL)
+	sudo $(LPC21ISP) $(LPC21ISP_OPTIONS) $(LPC21ISP_DEBUG) $(LPC21ISP_FLASHFILE) $(LPC21ISP_PORT) $(LPC21ISP_BAUD) $(LPC21ISP_XTAL)
 endif
 endif
 

@@ -16,7 +16,8 @@ STACK_SIZE = 0x800; -> see startup-file and .stack-section
 /* Memory Definitions */
 MEMORY
 {
-	ROM (rx) : ORIGIN = 0x00010000, LENGTH = 380k
+    ROM (rx) : ORIGIN = 0x00010000, LENGTH = 380k
+    /*ROM (rx) : ORIGIN = 0x00000000, LENGTH = 380k */
     RAM (rw) : ORIGIN = 0x40000000, LENGTH = 32k
 }
 

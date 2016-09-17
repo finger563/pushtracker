@@ -18,12 +18,15 @@
 //================================
 //			I/O Defines
 //================================
-#define USE_SLOW_GPIO
-//#define USE_FAST_GPIO
-
+//#define USE_SLOW_GPIO
+#define USE_FAST_GPIO
 
 #define CHIP_SELECT	(1<<20)
 #define SPI_SLAVE_CS (1<<20)  //pin P0.20
+
+#define OLED_PWR	(1<<30)			// P0.30
+#define OLED_ON		FIO0SET = OLED_PWR
+#define OLED_OFF	FIO0CLR = OLED_PWR
 
 #ifdef USE_SLOW_GPIO
 	#define SelectAccel()	IOCLR0 = CHIP_SELECT
@@ -31,18 +34,6 @@
 #else
 	#define SelectAccel()	FIO0CLR = CHIP_SELECT
 	#define UnselectAccel()	FIO0SET = CHIP_SELECT
-#endif
-
-
-
-#define OLED_PWR	(1<<30)			// P0.30
-
-#ifdef USE_SLOW_GPIO
-	#define OLED_ON		IOSET0 = OLED_PWR
-	#define OLED_OFF	IOCLR0 = OLED_PWR
-#else
-	#define OLED_ON		FIO0SET = OLED_PWR
-	#define OLED_OFF	FIO0CLR = OLED_PWR
 #endif
 
 #define BLUE			21		// blue LED is on P0.21 (active low)
