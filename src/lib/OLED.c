@@ -704,7 +704,7 @@ void DrawRectangle(unsigned char xLeft, unsigned char yTop, unsigned char xRight
 	{	
 	  if (row>=0 && col>=0 && row<=127 && col<=127)
 	    {
-	      if (((col-xLeft)<2)||((xRight-col)<2)||((row-yTop)<2)) disp_buff[row][col] = clrOutline;
+	      if (((col-xLeft)<2)||((xRight-col)<2)||((row-yTop)<2)||((yBottom-row)<2)) disp_buff[row][col] = clrOutline;
 	      else disp_buff[row][col] = clrFill;
 	    }	
 	}
